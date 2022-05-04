@@ -1,5 +1,5 @@
 # FastApi
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, Request, UploadFile
 
 
 # Managers
@@ -11,7 +11,7 @@ from schemas.request.loan import LoanIn
 from schemas.response.loan import LoanOut
 
 # Utils
-from typing import List
+from typing import List, Optional
 
 router = APIRouter(tags=["Loans"])
 

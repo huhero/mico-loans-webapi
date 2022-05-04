@@ -4,6 +4,19 @@ from db import database
 # Models
 from models import loan, RoleType, State
 
+# Services
+from services.s3 import S3Service
+
+# Constants
+from constants import TEMP_FILE_FOLDER
+
+# Utils
+import uuid
+import os
+from utils.helpers import save_local_document
+
+s3 = S3Service()
+
 
 class LoanManager:
     @staticmethod
@@ -18,6 +31,13 @@ class LoanManager:
     @staticmethod
     async def create_loan(loan_data, user):
         loan_data["user_id"] = user["id"]
+        # encoded_document = loan_data.pop("encoded_document")
+        # extension = document.
+        # name = f"{uuid.uuid4()}.{document.filename}"
+        # path = os.path.join(TEMP_FILE_FOLDER, name)
+        # save_local_document(path, document.file.read())
+        # loan_data["contract_document_url"] = s3.upload(path, name)
+        # os.remove(path)
         id_ = await database.execute(loan.insert().values(**loan_data))
         return await database.fetch_one(loan.select().where(loan.c.id == id_))
 
