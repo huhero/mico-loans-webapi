@@ -12,10 +12,12 @@ from db import database
 
 # Models
 from models import user
-from models.enums import RoleType
+from models.enums import RoleType, State
 
 # Utils
 from asyncpg import UniqueViolationError
+
+# AWS
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

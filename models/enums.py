@@ -10,4 +10,4 @@ class RoleType(enum.Enum):
 class State(enum.Enum):
     approved = "Approved"
     pending = "Pending"
-    Rejected = "Rejected"
+    rejected = "Rejected"

@@ -1,11 +1,15 @@
 # DB
 from db import database
 
+# FastAPI
+from fastapi import HTTPException
+
 # Models
 from models import loan, RoleType, State
 
 # Services
 from services.s3 import S3Service
+from services.ses import SESService
 
 # Constants
 from constants import TEMP_FILE_FOLDER
@@ -16,6 +20,7 @@ import os
 from utils.helpers import save_local_document
 
 s3 = S3Service()
+ses = SESService()
 
 
 class LoanManager:
@@ -49,6 +54,11 @@ class LoanManager:
     async def approve(loan_id):
         await database.execute(
             loan.update().where(loan.c.id == loan_id).values(state=State.approved)
+        )
+        ses.send_mail(
+            "Loan aproved!",
+            ["hrodrime@gmail.com"],
+            "Congrats! your loan is approved",
         )
 
     @staticmethod
