@@ -14,15 +14,13 @@ import asyncclick as click
 @click.option("-l", "--last_name", type=str, required=True)
 @click.option("-e", "--email", type=str, required=True)
 @click.option("-p", "--phone", type=str, required=True)
-@click.option("-i", "--iban", type=str, required=True)
 @click.option("-pa", "--password", type=str, required=True)
-async def create_user(first_name, last_name, email, phone, iban, password):
+async def create_user(first_name, last_name, email, phone, password):
     user_data = {
         "first_name": first_name,
         "last_name": last_name,
         "email": email,
         "phone": phone,
-        "iban": iban,
         "password": password,
         "role": RoleType.admin,
     }

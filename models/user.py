@@ -1,4 +1,5 @@
 # SqlAlchemy
+from email.policy import default
 import sqlalchemy
 
 
@@ -25,7 +26,7 @@ user = sqlalchemy.Table(
         nullable=False,
         server_default=RoleType.complainer.name,
     ),
-    sqlalchemy.Column("iban", sqlalchemy.String(255)),
+    sqlalchemy.Column("active", sqlalchemy.Boolean(), default=False),
     sqlalchemy.Column(
         "created_at", sqlalchemy.DateTime, server_default=sqlalchemy.func.now()
     ),

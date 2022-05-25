@@ -1,5 +1,5 @@
 # FastApi
-from fastapi import APIRouter, Depends, Request, Response, status
+from fastapi import APIRouter, Depends, Request
 
 
 # Managers
@@ -46,7 +46,7 @@ async def delete_loan(loan_id: int):
 @router.put(
     "/loans/{loan_id}/approve",
     dependencies=[Depends(oauth2_scheme), Depends(is_approver)],
-    status_code=204,
+    responses={204: {"model": None}},
 )
 async def approve_loan(loan_id: int):
     await LoanManager.approve(loan_id)

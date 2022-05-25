@@ -14,6 +14,6 @@ class UserOut(UserBase):
     first_name: str
     last_name: str
     role: RoleType
-    iban: str
+    active: bool
     created_at: datetime
     last_updated: datetime

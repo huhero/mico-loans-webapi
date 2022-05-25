@@ -1,8 +1,8 @@
 """Initial
 
-Revision ID: a18ac9ffbc8d
+Revision ID: 570164635d52
 Revises: 
-Create Date: 2022-04-25 19:28:04.419818
+Create Date: 2022-05-24 19:07:19.373069
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a18ac9ffbc8d'
+revision = '570164635d52'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,7 +26,7 @@ def upgrade():
     sa.Column('last_name', sa.String(length=255), nullable=True),
     sa.Column('phone', sa.String(length=20), nullable=True),
     sa.Column('role', sa.Enum('admin', 'approver', 'complainer', name='roletype'), server_default='complainer', nullable=False),
-    sa.Column('iban', sa.String(length=255), nullable=True),
+    sa.Column('active', sa.Boolean(), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('last_updated', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.PrimaryKeyConstraint('id'),
@@ -39,7 +39,7 @@ def upgrade():
     sa.Column('amount', sa.Integer(), nullable=True),
     sa.Column('term', sa.Integer(), nullable=True),
     sa.Column('interest_rate', sa.Float(), nullable=True),
-    sa.Column('state', sa.Enum('approved', 'pending', 'Rejected', name='state'), server_default='pending', nullable=False),
+    sa.Column('state', sa.Enum('approved', 'pending', 'rejected', name='state'), server_default='pending', nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('last_updated', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
